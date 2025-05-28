@@ -59,7 +59,7 @@ public class ContaCorrenteController : BaseController
             if (numeroConta <= 0)
                 throw new ArgumentNullOrEmptyException(nameof(numeroConta));
 
-            var request = new SaldoRequestQuery(numeroConta);
+            var request = new SaldoRequestQuery() { NumeroConta = numeroConta };
 
             var result = await _mediator.SendCommand<SaldoResponseQuery>(request);
 

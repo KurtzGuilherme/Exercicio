@@ -54,6 +54,15 @@ public class PostMovimentoContaCorrenteHandler : IRequestHandler<MovimentoReques
         return response;
     }
 
+    private void ValidacaoRequest(MovimentoRequestCommand request)
+    {
+        if (request == null)
+            throw new ArgumentNullOrEmptyException(nameof(request));
+
+        if (request.NumeroConta <= 0)
+            throw new ArgumentNullOrEmptyException(nameof(request));
+    }
+
     private void ValidacaoMovimento(ContaCorrente? contaCorrente, MovimentoRequestCommand request)
     {
         if (contaCorrente == null)
@@ -70,13 +79,4 @@ public class PostMovimentoContaCorrenteHandler : IRequestHandler<MovimentoReques
             throw new NotificationException("Apenas os tipos “débito” ou “crédito” podem ser aceitos.", "INVALID_TYPE");
     }
 
-    private void ValidacaoRequest(MovimentoRequestCommand request)
-    {
-        if (request == null)
-            throw new ArgumentNullOrEmptyException(nameof(request));
-
-        if (request.NumeroConta <= 0)
-            throw new ArgumentNullOrEmptyException(nameof(request));
-
-    }
 }

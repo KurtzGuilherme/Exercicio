@@ -5,10 +5,6 @@ namespace Questao5.Application.Queries.Requests;
 
 public class SaldoRequestQuery : IRequest<SaldoResponseQuery>
 {
-    public int NumeroConta { get; }
+    public int NumeroConta { get; set; }
 
-    public SaldoRequestQuery(int numeroConta)
-    {
-        NumeroConta = numeroConta;
-    }
 }
